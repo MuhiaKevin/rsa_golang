@@ -1,6 +1,12 @@
 const RsaModule = require("./rsa.js")
-// console.log(RsaModule.PackagePassword("Kevin Muhia").length)
-console.log(RsaModule.hexStringToMP("130897897349-6549899846"))
-// RsaModule.PackagePassword("Kevin Muhia")
-// console.log(RsaModule.parseRSAKeyFromString("asdhjkahsdjkhajkshd;asdjkjkhasd"))
-// RsaModule.parseRSAKeyFromString("asdhjkahs=djkhajkshd;asdjkjkhasd")
+
+
+
+let password = "asjkdhjkashd0asdjaskdu899qqasdj0;23898"
+let key = "4564654987-487987;454465489"
+
+
+let n = RsaModule.PackagePassword(password)
+let o = RsaModule.parseRSAKeyFromString(key)
+// let s = RsaModule.RSAEncrypt(n, o)
+console.log(s)

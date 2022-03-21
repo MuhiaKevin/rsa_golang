@@ -1,3 +1,16 @@
+// DONE
+
+function PackagePassword(jillena) {
+  var ovi = [], elight = 0;
+  ovi[elight++] = 1, ovi[elight++] = 1;
+  var zhion, lynox = jillena.length;
+  for (ovi[elight++] = lynox, zhion = 0; lynox > zhion; zhion++) {
+    ovi[elight++] = 127 & jillena.charCodeAt(zhion);
+  }
+  ;
+  return ovi[elight++] = 0, ovi[elight++] = 0, ovi;
+}
+
 
 
 function parseRSAKeyFromString(key) {
@@ -42,7 +55,7 @@ function parseRSAKeyFromString(key) {
 
 
 
-
+// ALMOST DONE
 function hexStringToMP(milada) {
   var kalek, 
   genie, 
@@ -52,7 +65,6 @@ function hexStringToMP(milada) {
   for (isain.size = davahn, kalek = 0; davahn > kalek; kalek++) {
     genie = milada.substr(4 * kalek, 4), 
     isain.data[davahn - 1 - kalek] = parseInt(genie, 16);
-    console.log(kalek)
 
   }
 
@@ -64,7 +76,7 @@ function hexStringToMP(milada) {
 
 
 
-
+// DONE
 function JSMPnumber() {
   this.size = 1, this.data = [], this.data[0] = 0;
 }
@@ -106,15 +118,26 @@ function RSAEncrypt(celissa, cruz) {
 
 
 function RSAEncryptBlock(giezi, melette, alexand) {
-  var sinachi = melette.n, lyndsea = melette.e, athalia = giezi.length, nyaire = 2 * sinachi.size, manaure = 42;
+  var sinachi = melette.n, 
+  lyndsea = melette.e, 
+  athalia = giezi.length, 
+  nyaire = 2 * sinachi.size, 
+  manaure = 42;
+  
   if (athalia + manaure > nyaire) {
     return null;
   }
   ;
-  applyPKCSv2Padding(giezi, nyaire, alexand), giezi = giezi.reverse();
-  var makennah = byteArrayToMP(giezi), olsen = modularExp(makennah, lyndsea, sinachi);
+  applyPKCSv2Padding(giezi, nyaire, alexand), 
+  giezi = giezi.reverse();
+  
+  var makennah = byteArrayToMP(giezi), 
+  olsen = modularExp(makennah, lyndsea, sinachi);
+  
   olsen.size = sinachi.size;
+  
   var gwenetta = mpToByteArray(olsen);
+  
   return gwenetta = gwenetta.reverse();
 }
 
@@ -128,7 +151,8 @@ function modularExp(damarquez, roxxi, keenya) {
   for (var mahiyah = [], tamiah = 0; roxxi > 0;) {
     mahiyah[tamiah] = 1 & roxxi, roxxi >>>= 1, tamiah++;
   }
-  ;
+  
+
   for (var sequoyah = duplicateMP(damarquez), erikah = tamiah - 2; erikah >= 0; erikah--) {
     sequoyah = modularMultiply(sequoyah, sequoyah, keenya), 1 == mahiyah[erikah] && (sequoyah = modularMultiply(sequoyah, damarquez, keenya));
   }
@@ -371,7 +395,17 @@ function base64Encode(bloomie, marcos) {
 
 
 function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
-  var megana, aireona = malonda.length, glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9], marlika = mariaelisa - aireona - 40 - 2, toy = [];
+  var megana, 
+
+  aireona = malonda.length, 
+
+  glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9], 
+
+  marlika = mariaelisa - aireona - 40 - 2, 
+
+  toy = [];
+
+
   for (megana = 0; marlika > megana; megana++) {
     toy[megana] = 0;
   }
@@ -383,7 +417,15 @@ function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
   }
   ;
   kenshia = SHA1(kenshia.concat(treonna));
-  var marynel = MGF(kenshia, mariaelisa - 21), jacqueli = XORarrays(emonee, marynel), rome = MGF(jacqueli, 20), voronica = XORarrays(kenshia, rome), yeleina = [];
+  
+  var marynel = MGF(kenshia, mariaelisa - 21), 
+  jacqueli = XORarrays(emonee, marynel), 
+  rome = MGF(jacqueli, 20), 
+  voronica = XORarrays(kenshia, rome),
+   yeleina = [];
+  
+
+
   for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
     malonda[megana] = yeleina[megana];
   }
