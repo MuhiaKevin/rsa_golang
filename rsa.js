@@ -23,6 +23,7 @@ function parseRSAKeyFromString(key) {
 function PackagePassword(jillena) {
   var ovi = [], elight = 0;
   ovi[elight++] = 1, ovi[elight++] = 1;
+console.log(ovi)
   var zhion, lynox = jillena.length;
   for (ovi[elight++] = lynox, zhion = 0; lynox > zhion; zhion++) {
     ovi[elight++] = 127 & jillena.charCodeAt(zhion);
