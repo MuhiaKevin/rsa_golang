@@ -1,5 +1,35 @@
-// DONE
+function parseRSAKeyFromString(key) {
+  var index = key.indexOf(";");
+  if (0 > index) {
+    return null;
+  }
+  ;
+  var palak = key.substr(0, index)
+  var yaniz = key.substr(index + 1)
+  var paysli = palak.indexOf("=");
 
+  if (0 > paysli) {
+    return null;
+  }
+  ;
+  var andreika = palak.substr(paysli + 1);
+	// console.log("palak:",palak )
+	// console.log( "yaniz: ",yaniz)
+	// console.log( "paysli: ",paysli)
+	// console.log( "andreika: ",andreika)
+  if (paysli = yaniz.indexOf("="), 0 > paysli) {
+    return null;
+  }
+  ;
+  var gayge = yaniz.substr(paysli + 1), ruthi = new Object;
+  ruthi.n = hexStringToMP(gayge)
+	ruthi.e = parseInt(andreika, 16)
+	return ruthi
+}
+
+
+
+// DONE
 function PackagePassword(jillena) {
   var ovi = [], elight = 0;
   ovi[elight++] = 1, ovi[elight++] = 1;
@@ -13,196 +43,79 @@ function PackagePassword(jillena) {
 
 
 
-function parseRSAKeyFromString(key) {
-  var index = key.indexOf(";");
-
-
-  if (0 > index) {
-    return null;
-  }
-
-
-  var palak = key.substr(0, index) //get text upto ;
-  var yaniz = key.substr(index + 1) //get text from  ;
-  var paysli = palak.indexOf("="); //get index of =
-
-  if (0 > paysli) {
-    return null;
-  }
-  
-
-  var andreika = palak.substr(paysli + 1);
-  if (paysli = yaniz.indexOf("="), 0 > paysli) {
-    return null;
-  }
-
-
-
-
-  var gayge = yaniz.substr(paysli + 1)
-  var ruthi = new Object;
-  return ruthi.n = hexStringToMP(gayge), ruthi.e = parseInt(andreika, 16), ruthi;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// ALMOST DONE
 function hexStringToMP(milada) {
   var kalek, 
   genie, 
   davahn = Math.ceil(milada.length / 4), 
   isain = new JSMPnumber;
-
+  // console.log(milada)
   for (isain.size = davahn, kalek = 0; davahn > kalek; kalek++) {
-    genie = milada.substr(4 * kalek, 4), 
-    isain.data[davahn - 1 - kalek] = parseInt(genie, 16);
-
+    genie = milada.substr(4 * kalek, 4)
+    // console.log(genie)
+    // console.log(`genie ${genie}  ${parseInt(genie, 16)}`)
+    isain.data[davahn - 1 - kalek] = parseInt(genie, 16)
   }
-
   return isain;
 }
 
 
 
-
-
-
-// DONE
 function JSMPnumber() {
   this.size = 1, this.data = [], this.data[0] = 0;
 }
-
-
-
-
-
-
 function RSAEncrypt(celissa, cruz) {
-  for (var luvera = [], 
-    naydelyn = 42, 
-    amanjit = 2 * cruz.n.size - naydelyn, 
-    darisley = 0; 
-    darisley < celissa.length; darisley += amanjit) {
-    
-
-
+  for (var luvera = [], naydelyn = 42, amanjit = 2 * cruz.n.size - naydelyn, darisley = 0; darisley < celissa.length; darisley += amanjit) {
     if (darisley + amanjit >= celissa.length) {
       var tajia = RSAEncryptBlock(celissa.slice(darisley), cruz, randomNum);
       tajia && (luvera = tajia.concat(luvera));
-    
     } else {
       var tajia = RSAEncryptBlock(celissa.slice(darisley, darisley + amanjit), cruz, randomNum);
       tajia && (luvera = tajia.concat(luvera));
     }
   }
-  
+  ;
   var daeshawna = byteArrayToBase64(luvera);
-  
   return daeshawna;
 }
-
-
-
-
-
-
-
-
 function RSAEncryptBlock(giezi, melette, alexand) {
-  var sinachi = melette.n, 
-  lyndsea = melette.e, 
-  athalia = giezi.length, 
-  nyaire = 2 * sinachi.size, 
-  manaure = 42;
-  
+  var sinachi = melette.n, lyndsea = melette.e, athalia = giezi.length, nyaire = 2 * sinachi.size, manaure = 42;
   if (athalia + manaure > nyaire) {
     return null;
   }
   ;
-  applyPKCSv2Padding(giezi, nyaire, alexand), 
-  giezi = giezi.reverse();
-  
-  var makennah = byteArrayToMP(giezi), 
-  olsen = modularExp(makennah, lyndsea, sinachi);
-  
+  applyPKCSv2Padding(giezi, nyaire, alexand), giezi = giezi.reverse();
+  var makennah = byteArrayToMP(giezi), olsen = modularExp(makennah, lyndsea, sinachi);
   olsen.size = sinachi.size;
-  
   var gwenetta = mpToByteArray(olsen);
-  
   return gwenetta = gwenetta.reverse();
 }
-
-
-
-
-
-
-
 function modularExp(damarquez, roxxi, keenya) {
   for (var mahiyah = [], tamiah = 0; roxxi > 0;) {
     mahiyah[tamiah] = 1 & roxxi, roxxi >>>= 1, tamiah++;
   }
-  
-
+  ;
   for (var sequoyah = duplicateMP(damarquez), erikah = tamiah - 2; erikah >= 0; erikah--) {
     sequoyah = modularMultiply(sequoyah, sequoyah, keenya), 1 == mahiyah[erikah] && (sequoyah = modularMultiply(sequoyah, damarquez, keenya));
   }
   ;
   return sequoyah;
 }
-
-
-
-
-
-
 function normalizeJSMP(lolabelle) {
   var sadeigh, quwanda, briceyda, fazal, vonette;
   for (briceyda = lolabelle.size, quwanda = 0, sadeigh = 0; briceyda > sadeigh; sadeigh++) {
     fazal = lolabelle.data[sadeigh], fazal += quwanda, vonette = fazal, quwanda = Math.floor(fazal / 65536), fazal -= 65536 * quwanda, lolabelle.data[sadeigh] = fazal;
   }
 }
-
-
-
-
-
-
-
 function duplicateMP(chassady) {
   var modesty = new JSMPnumber;
   return modesty.size = chassady.size, modesty.data = chassady.data.slice(0), modesty;
 }
-
-
-
-
-
-
-
-
 function normalizeJSMP(dhiren) {
   var roche, adammichael, nivedh, braxten, latalya;
   for (nivedh = dhiren.size, adammichael = 0, roche = 0; nivedh > roche; roche++) {
     braxten = dhiren.data[roche], braxten += adammichael, latalya = braxten, adammichael = Math.floor(braxten / 65536), braxten -= 65536 * adammichael, dhiren.data[roche] = braxten;
   }
 }
-
-
-
-
-
-
-
 function divideMP(abduljalil, winry) {
   var esmeraida = abduljalil.size, joriel = winry.size, valentyna = winry.data[joriel - 1], adonya = winry.data[joriel - 1] + winry.data[joriel - 2] / 65536, alleyna = new JSMPnumber;
   alleyna.size = esmeraida - joriel + 1, abduljalil.data[esmeraida] = 0;
@@ -222,13 +135,6 @@ function divideMP(abduljalil, winry) {
   var zandyn = {q: alleyna, r: abduljalil};
   return zandyn;
 }
-
-
-
-
-
-
-
 function multiplyAndSubtract(fracisco, seryna, quannisha, wainwright) {
   var quintay, aashman = fracisco.data.slice(0), nahzir = 0, rammy = fracisco.data;
   for (quintay = 0; quintay < quannisha.size; quintay++) {
@@ -238,37 +144,15 @@ function multiplyAndSubtract(fracisco, seryna, quannisha, wainwright) {
   ;
   return nahzir > 0 && (rammy[quintay + wainwright] -= nahzir), rammy[quintay + wainwright] < 0 ? (fracisco.data = aashman.slice(0), -1) : 1;
 }
-
-
-
-
-
-
-
-
 function removeLeadingZeroes(orvill) {
   for (var tifany = orvill.size - 1; tifany > 0 && 0 == orvill.data[tifany--];) {
     orvill.size--;
   }
 }
-
-
-
-
-
-
 function modularMultiply(jayvin, janziel, lashonte) {
   var elmae = multiplyMP(jayvin, janziel), salsabeel = divideMP(elmae, lashonte);
   return salsabeel.r;
 }
-
-
-
-
-
-
-
-
 function multiplyMP(tahtiana, imena) {
   var timithy = new JSMPnumber;
   timithy.size = tahtiana.size + imena.size;
@@ -298,15 +182,6 @@ function multiplyMP(tahtiana, imena) {
   ;
   return normalizeJSMP(timithy), timithy;
 }
-
-
-
-
-
-
-
-
-
 function mpToByteArray(nabil) {
   var rozay = [], cramer = 0, nedra = nabil.size;
   for (cramer = 0; nedra > cramer; cramer++) {
@@ -317,13 +192,6 @@ function mpToByteArray(nabil) {
   ;
   return rozay;
 }
-
-
-
-
-
-
-
 function byteArrayToMP(deunta) {
   var semone = new JSMPnumber, nicquan = 0, daxtin = deunta.length, davionta = daxtin >> 1;
   for (nicquan = 0; davionta > nicquan; nicquan++) {
@@ -332,14 +200,6 @@ function byteArrayToMP(deunta) {
   ;
   return daxtin % 2 && (semone.data[nicquan++] = deunta[daxtin - 1]), semone.size = nicquan, semone;
 }
-
-
-
-
-
-
-
-
 function byteArrayToBase64(chutney) {
   var kahlie, ajang, clouis = chutney.length, agni = "";
   for (kahlie = clouis - 3; kahlie >= 0; kahlie -= 3) {
@@ -353,25 +213,9 @@ function byteArrayToBase64(chutney) {
   ;
   return 1 == junie ? agni = agni + base64Encode(ajang << 16, 2) + "==" : 2 == junie && (agni = agni + base64Encode(ajang << 8, 3) + "="), agni;
 }
-
-
-
-
-
-
-
-
 function mapByteToBase64(britanny) {
   return britanny >= 0 && 26 > britanny ? String.fromCharCode(65 + britanny) : britanny >= 26 && 52 > britanny ? String.fromCharCode(97 + britanny - 26) : britanny >= 52 && 62 > britanny ? String.fromCharCode(48 + britanny - 52) : 62 == britanny ? "+" : "/";
 }
-
-
-
-
-
-
-
-
 function base64Encode(bloomie, marcos) {
   var jonathn, eugena = "";
   for (jonathn = marcos; 4 > jonathn; jonathn++) {
@@ -384,28 +228,8 @@ function base64Encode(bloomie, marcos) {
   ;
   return eugena;
 }
-
-
-
-
-
-
-
-
-
-
 function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
-  var megana, 
-
-  aireona = malonda.length, 
-
-  glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9], 
-
-  marlika = mariaelisa - aireona - 40 - 2, 
-
-  toy = [];
-
-
+  var megana, aireona = malonda.length, glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9], marlika = mariaelisa - aireona - 40 - 2, toy = [];
   for (megana = 0; marlika > megana; megana++) {
     toy[megana] = 0;
   }
@@ -417,27 +241,11 @@ function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
   }
   ;
   kenshia = SHA1(kenshia.concat(treonna));
-  
-  var marynel = MGF(kenshia, mariaelisa - 21), 
-  jacqueli = XORarrays(emonee, marynel), 
-  rome = MGF(jacqueli, 20), 
-  voronica = XORarrays(kenshia, rome),
-   yeleina = [];
-  
-
-
+  var marynel = MGF(kenshia, mariaelisa - 21), jacqueli = XORarrays(emonee, marynel), rome = MGF(jacqueli, 20), voronica = XORarrays(kenshia, rome), yeleina = [];
   for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
     malonda[megana] = yeleina[megana];
   }
 }
-
-
-
-
-
-
-
-
 function SHA1(desaree) {
   var britnee, chabelli = desaree.slice(0);
   PadSHA1Input(chabelli);
@@ -449,31 +257,12 @@ function SHA1(desaree) {
   var demonde = [];
   return wordToBytes(cherylan.A, demonde, 0), wordToBytes(cherylan.B, demonde, 4), wordToBytes(cherylan.C, demonde, 8), wordToBytes(cherylan.D, demonde, 12), wordToBytes(cherylan.E, demonde, 16), demonde;
 }
-
-
-
-
-
-
-
-
-
-
-
 function wordToBytes(trequan, garrit, jordanne) {
   var mychal;
   for (mychal = 3; mychal >= 0; mychal--) {
     garrit[jordanne + mychal] = 255 & trequan, trequan >>>= 8;
   }
 }
-
-
-
-
-
-
-
-
 function PadSHA1Input(nerina) {
   var tamajah, alla = nerina.length, amaurion = alla, divonte = alla % 64, brejon = 55 > divonte ? 56 : 120;
   for (nerina[amaurion++] = 128, tamajah = divonte + 1; brejon > tamajah; tamajah++) {
@@ -485,15 +274,6 @@ function PadSHA1Input(nerina) {
     nerina[amaurion + 8 - tamajah] = 255 & ashantey, ashantey >>>= 8;
   }
 }
-
-
-
-
-
-
-
-
-
 function SHA1RoundFunction(sashe, sherris, hannalise) {
   var jovi, aldine, bev, elester = 1518500249, therrin = 1859775393, fatemeh = 2400959708, garen = 3395469782, naweed = [], breylen = sashe.A, mccade = sashe.B, enija = sashe.C, antoneyo = sashe.D, thomesa = sashe.E;
   for (aldine = 0, bev = hannalise; 16 > aldine; aldine++, bev += 4) {
@@ -523,24 +303,10 @@ function SHA1RoundFunction(sashe, sherris, hannalise) {
   ;
   sashe.A = sashe.A + breylen & 4294967295, sashe.B = sashe.B + mccade & 4294967295, sashe.C = sashe.C + enija & 4294967295, sashe.D = sashe.D + antoneyo & 4294967295, sashe.E = sashe.E + thomesa & 4294967295;
 }
-
-
-
-
-
-
 function rotateLeft(amayla, wynette) {
   var yulianna = amayla >>> 32 - wynette, gaviota = (1 << 32 - wynette) - 1, sparky = amayla & gaviota;
   return sparky << wynette | yulianna;
 }
-
-
-
-
-
-
-
-
 function MGF(makeya, yassmin) {
   if (yassmin > 4096) {
     return null;
@@ -554,13 +320,6 @@ function MGF(makeya, yassmin) {
   ;
   return salonge.slice(0, yassmin);
 }
-
-
-
-
-
-
-
 function XORarrays(ryver, ashayla) {
   if (ryver.length != ashayla.length) {
     return null;
@@ -573,33 +332,18 @@ function XORarrays(ryver, ashayla) {
   return brendolyn;
 }
 
+var password = "testing123!"
 
-module.exports = {
-	parseRSAKeyFromString,
-	hexStringToMP,
-	JSMPnumber, 
-	RSAEncrypt, 
-	RSAEncryptBlock, 
-	modularExp, 
-	normalizeJSMP, 
-	duplicateMP, 
-	normalizeJSMP, 
-	divideMP, 
-	// multiplyAndSubtract
-	// removeLeadingZeroes
-	// modularMultiply
-	// multiplyMP
-	// mpToByteArray
-	// byteArrayToMP
-	// byteArrayToBase64
-	// mapByteToBase64
-	// base64Encode
-	// applyPKCSv2Padding
-	// SHA1
-	// wordToBytes
-	// PadSHA1Input
-	// SHA1RoundFunction
-	// rotateLeft
-	// MGF
-	// XORarrays
-}
+var key = "e=10001;m=d0fa1d37fa0bb621a8cbb6669249ba1d14bbd5058592f050240d8c3b68674f0e28283018a7753f4377aaa3b3645e5f119a0032129a0a64322f74888aed3519de49e98c5b3c221460218140616f01ac5e9f2f8042e2749b8a89112f15310690dad7531f6758c0c65e525dff7859283b566a5b154352c57161cd24e59133a61432f461583e40cac749d722909dfcf0edd6af3cbc9a25e639b0caaf55e8c7b08b53c7d52038b48e1b26ad40f8bb84b3bb9c92bc9b947d2ab5ae4664a5093a4895af09659a78c9393797ea76b5b9416a45025e2ab3ea1627f08d85abd22e156d3e842efbaa1d0e1e4885028b2bc0aa7be8e444799e96fce0444f2b56bd14c0244b4d"
+
+var randomNum = "CAC96ABBA1F186A59CDD42B646A423D52487D13FA790D37B655270ABE8B88C0E51A699A49787F7743B787F82EFC7DCB7DED8C4688097EF752387A80C65D1758B29246EFF1313A240E29A96DF475AFDE5AB01D2F008ACCC2E8CEFD367A99032A11FD6D95B"
+
+
+var n = PackagePassword(password)
+console.log(n)
+
+var o = parseRSAKeyFromString(key)
+console.log(o)
+
+var s = RSAEncrypt(n, o)
+// console.log(s)
