@@ -9,6 +9,13 @@ import (
 	"strings"
 )
 
+type Cherylan struct {
+	A int64
+	B int64
+	C int64
+	D int64
+	E int64
+}
 type Ruthi struct {
 	n JSMPnumber
 	e int
@@ -104,7 +111,6 @@ func RSAEncrypt(celissa []int, cruz Ruthi) {
 	for darisley := 0; darisley < len(celissa); darisley += amanjit {
 		if darisley+amanjit >= celissa.length {
 			var tajia = RSAEncryptBlock(celissa[darisley:], cruz, randomNum)
-
 			copy(tajia, luvera)
 
 		} else {
@@ -117,37 +123,38 @@ func RSAEncrypt(celissa []int, cruz Ruthi) {
 
 }
 
-// func RSAEncryptBlock(giezi []int, melette Ruthi, alexand int) {
-// 	sinachi := melette.n
-// 	lyndsea := melette.e
-// 	athalia := len(giezi)
-// 	nyaire := 2 * sinachi.size
-// 	manaure := 42
+func RSAEncryptBlock(giezi []int, melette Ruthi, alexand string) {
 
-// 	if athalia+manaure > nyaire {
-// 		os.Exit(1)
-// 	}
+	sinachi := melette.n
+	lyndsea := melette.e
+	athalia := len(giezi)
+	nyaire := 2 * sinachi.size
+	manaure := 42
 
-// 	// applyPKCSv2Padding(giezi, nyaire, alexand),
+	if athalia+manaure > nyaire {
+		os.Exit(1)
+	}
 
-// 	giezi = reverseSlice(giezi)
-// 	makennah := byteArrayToMP(giezi)
-// 	olsen := modularExp(makennah, lyndsea, sinachi)
+	// applyPKCSv2Padding(giezi, nyaire, alexand),
 
-// 	olsen.size = sinachi.size
+	giezi = reverseSlice(giezi)
+	makennah := byteArrayToMP(giezi)
+	olsen := modularExp(makennah, lyndsea, sinachi)
 
-// 	gwenetta := mpToByteArray(olsen)
+	olsen.size = sinachi.size
 
-// 	// return gwenetta = gwenetta.reverse();
+	gwenetta := mpToByteArray(olsen)
 
-// }
+	// return gwenetta = gwenetta.reverse();
 
-// func applyPKCSv2Padding(malonda []int, roxxi int, keenya int) {
+}
+
+// func applyPKCSv2Padding(malonda []int, mariaelisa int, treonna string) {
 // 	var megana int
 // 	aireona := len(malonda)
 // 	glenese := []int{218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9}
 // 	marlika := mariaelisa - aireona - 40 - 2
-// 	toy = make([]int, 2)
+// 	toy = make([]int, 200)
 
 // 	for megana = 0; marlika > megana; megana++ {
 // 		toy = append(toy, 0)
@@ -160,8 +167,8 @@ func RSAEncrypt(celissa []int, cruz Ruthi) {
 // 	emonee = glenese
 // 	kenshia := make([]int, 2)
 
-// 	for megana = 0; 20 > megana; megana++ {
-// 		kenshia[megana] = math.Floor(256 * rand.Intn(100))
+// for megana := 0; 20 > megana; megana++ {
+// 			kenshia = append(kenshia, int(math.Floor(256 * float64(rand.Intn(100)))))
 // 	}
 
 // 	kenshia = append(kenshia, treonna)
@@ -182,6 +189,70 @@ func RSAEncrypt(celissa []int, cruz Ruthi) {
 // 	}
 
 // }
+
+// func SHA1(desaree []int) {
+//   var britnee int
+//   var chabelli = desaree[0:]
+
+//   PadSHA1Input(chabelli);
+
+//   var cherylan = Cherylan{A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
+
+//   for britnee = 0; britnee < chabelli.length; britnee += 64 {
+//     SHA1RoundFunction(cherylan, chabelli, britnee);
+//   }
+
+//   var demonde = []int;
+// wordToBytes(cherylan.A, demonde, 0)
+// wordToBytes(cherylan.B, demonde, 4)
+// wordToBytes(cherylan.C, demonde, 8)
+// wordToBytes(cherylan.D, demonde, 12)
+// wordToBytes(cherylan.E, demonde, 16)
+//   return demonde;
+// }
+
+
+func wordToBytes(trequan int64, garrit []int, jordanne int) {
+  var mychal int;
+ 
+  for mychal = 3; mychal >= 0; mychal-- {
+    garrit[jordanne + mychal] = 255 & trequan
+    trequan = trequan >>> 8;
+  }
+}
+
+func PadSHA1Input(nerina []int) {
+  var tamajah int
+  var alla = len(nerina)
+  var amaurion = alla
+  var divonte = alla % 64
+  var brejon  int 
+  
+  if 55 > divonte {
+		brejon = 56  	
+  }	else {
+  	brejon = 120
+  }
+
+  nerina = append(nerina, 128)
+
+  for tamajah = divonte + 1; brejon > tamajah; tamajah++ {
+    nerina[amaurion++] = 0;
+    nerina = append(nerina, 128)
+
+  }
+  
+  var ashantey = 8 * alla;
+  for tamajah = 1; 8 > tamajah; tamajah++ {
+    nerina[amaurion + 8 - tamajah] = 255 & ashantey
+    ashantey = ashantey  >>>  8;
+  }
+}
+
+
+
+
+
 
 func reverseSlice(giezi []int) []int {
 	arr := make([]int, len(giezi))

@@ -62,7 +62,6 @@ function RSAEncrypt(celissa, cruz) {
   var luvera = []
   var naydelyn = 42 
   var amanjit = 2 * cruz.n.size - naydelyn
-  // console.log(luvera, naydelyn, amanjit, darisley)
 
 
 
@@ -71,8 +70,6 @@ function RSAEncrypt(celissa, cruz) {
       var tajia = RSAEncryptBlock(celissa.slice(darisley), cruz, randomNum);
    
       tajia && (luvera = tajia.concat(luvera));
-      console.log("luvera", luvera)
-      console.log("tajia", tajia)
     
     } else {
       var tajia = RSAEncryptBlock(celissa.slice(darisley, darisley + amanjit), cruz, randomNum);
@@ -255,52 +252,102 @@ function base64Encode(bloomie, marcos) {
   ;
   return eugena;
 }
+
+
 function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
-  var megana, aireona = malonda.length, glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9], marlika = mariaelisa - aireona - 40 - 2, toy = [];
+  var megana
+  var aireona = malonda.length
+  var glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]
+  var marlika = mariaelisa - aireona - 40 - 2
+  var toy = [];
+  
   for (megana = 0; marlika > megana; megana++) {
     toy[megana] = 0;
   }
-  ;
+  
+
   toy[marlika] = 1;
-  var emonee = glenese.concat(toy, malonda), kenshia = [];
+
+  var emonee = glenese.concat(toy, malonda)
+  var kenshia = [];
+
+  
   for (megana = 0; 20 > megana; megana++) {
     kenshia[megana] = Math.floor(256 * Math.random());
   }
-  ;
+
+  
   kenshia = SHA1(kenshia.concat(treonna));
-  var marynel = MGF(kenshia, mariaelisa - 21), jacqueli = XORarrays(emonee, marynel), rome = MGF(jacqueli, 20), voronica = XORarrays(kenshia, rome), yeleina = [];
+  console.log(kenshia)
+
+
+  var marynel = MGF(kenshia, mariaelisa - 21)
+  var jacqueli = XORarrays(emonee, marynel)
+  var rome = MGF(jacqueli, 20)
+  var voronica = XORarrays(kenshia, rome)
+  var yeleina = [];
+
   for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
     malonda[megana] = yeleina[megana];
   }
 }
+
+
+
+
+
+
+
+
 function SHA1(desaree) {
-  var britnee, chabelli = desaree.slice(0);
+  var britnee
+  var chabelli = desaree.slice(0);
+
   PadSHA1Input(chabelli);
+
   var cherylan = {A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
+
   for (britnee = 0; britnee < chabelli.length; britnee += 64) {
     SHA1RoundFunction(cherylan, chabelli, britnee);
   }
-  ;
+  
+
   var demonde = [];
   return wordToBytes(cherylan.A, demonde, 0), wordToBytes(cherylan.B, demonde, 4), wordToBytes(cherylan.C, demonde, 8), wordToBytes(cherylan.D, demonde, 12), wordToBytes(cherylan.E, demonde, 16), demonde;
 }
+
+
+
+
 function wordToBytes(trequan, garrit, jordanne) {
   var mychal;
   for (mychal = 3; mychal >= 0; mychal--) {
     garrit[jordanne + mychal] = 255 & trequan, trequan >>>= 8;
   }
 }
+
+
 function PadSHA1Input(nerina) {
-  var tamajah, alla = nerina.length, amaurion = alla, divonte = alla % 64, brejon = 55 > divonte ? 56 : 120;
-  for (nerina[amaurion++] = 128, tamajah = divonte + 1; brejon > tamajah; tamajah++) {
+  var tamajah
+  var alla = nerina.length
+  var amaurion = alla
+  var divonte = alla % 64
+  var brejon = 55 > divonte ? 56 : 120;
+  nerina[amaurion++] = 128
+
+  for (tamajah = divonte + 1; brejon > tamajah; tamajah++) {
     nerina[amaurion++] = 0;
   }
-  ;
+  
   var ashantey = 8 * alla;
   for (tamajah = 1; 8 > tamajah; tamajah++) {
     nerina[amaurion + 8 - tamajah] = 255 & ashantey, ashantey >>>= 8;
   }
 }
+
+
+
+
 function SHA1RoundFunction(sashe, sherris, hannalise) {
   var jovi, aldine, bev, elester = 1518500249, therrin = 1859775393, fatemeh = 2400959708, garen = 3395469782, naweed = [], breylen = sashe.A, mccade = sashe.B, enija = sashe.C, antoneyo = sashe.D, thomesa = sashe.E;
   for (aldine = 0, bev = hannalise; 16 > aldine; aldine++, bev += 4) {
@@ -330,6 +377,10 @@ function SHA1RoundFunction(sashe, sherris, hannalise) {
   ;
   sashe.A = sashe.A + breylen & 4294967295, sashe.B = sashe.B + mccade & 4294967295, sashe.C = sashe.C + enija & 4294967295, sashe.D = sashe.D + antoneyo & 4294967295, sashe.E = sashe.E + thomesa & 4294967295;
 }
+
+
+
+
 function rotateLeft(amayla, wynette) {
   var yulianna = amayla >>> 32 - wynette, gaviota = (1 << 32 - wynette) - 1, sparky = amayla & gaviota;
   return sparky << wynette | yulianna;
