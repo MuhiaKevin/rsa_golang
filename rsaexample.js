@@ -13,10 +13,7 @@ function parseRSAKeyFromString(key) {
   }
   ;
   var andreika = palak.substr(paysli + 1);
-	// console.log("palak:",palak )
-	// console.log( "yaniz: ",yaniz)
-	// console.log( "paysli: ",paysli)
-	// console.log( "andreika: ",andreika)
+	
   if (paysli = yaniz.indexOf("="), 0 > paysli) {
     return null;
   }
@@ -48,11 +45,8 @@ function hexStringToMP(milada) {
   genie, 
   davahn = Math.ceil(milada.length / 4), 
   isain = new JSMPnumber;
-  // console.log(milada)
   for (isain.size = davahn, kalek = 0; davahn > kalek; kalek++) {
     genie = milada.substr(4 * kalek, 4)
-    // console.log(genie)
-    // console.log(`genie ${genie}  ${parseInt(genie, 16)}`)
     isain.data[davahn - 1 - kalek] = parseInt(genie, 16)
   }
   return isain;
@@ -64,31 +58,64 @@ function JSMPnumber() {
   this.size = 1, this.data = [], this.data[0] = 0;
 }
 function RSAEncrypt(celissa, cruz) {
-  for (var luvera = [], naydelyn = 42, amanjit = 2 * cruz.n.size - naydelyn, darisley = 0; darisley < celissa.length; darisley += amanjit) {
+
+  var luvera = []
+  var naydelyn = 42 
+  var amanjit = 2 * cruz.n.size - naydelyn
+  // console.log(luvera, naydelyn, amanjit, darisley)
+
+
+
+  for (var darisley = 0; darisley < celissa.length; darisley += amanjit) {
     if (darisley + amanjit >= celissa.length) {
       var tajia = RSAEncryptBlock(celissa.slice(darisley), cruz, randomNum);
+   
       tajia && (luvera = tajia.concat(luvera));
+      console.log("luvera", luvera)
+      console.log("tajia", tajia)
+    
     } else {
       var tajia = RSAEncryptBlock(celissa.slice(darisley, darisley + amanjit), cruz, randomNum);
       tajia && (luvera = tajia.concat(luvera));
     }
+  
   }
-  ;
+
+
   var daeshawna = byteArrayToBase64(luvera);
   return daeshawna;
 }
+
+
+
+
 function RSAEncryptBlock(giezi, melette, alexand) {
-  var sinachi = melette.n, lyndsea = melette.e, athalia = giezi.length, nyaire = 2 * sinachi.size, manaure = 42;
+  var sinachi = melette.n
+  var lyndsea = melette.e
+  var athalia = giezi.length 
+  var nyaire = 2 * sinachi.size
+  var  manaure = 42;
+
+
   if (athalia + manaure > nyaire) {
     return null;
   }
-  ;
-  applyPKCSv2Padding(giezi, nyaire, alexand), giezi = giezi.reverse();
-  var makennah = byteArrayToMP(giezi), olsen = modularExp(makennah, lyndsea, sinachi);
+  
+  applyPKCSv2Padding(giezi, nyaire, alexand)
+  giezi = giezi.reverse();
+  
+  var makennah = byteArrayToMP(giezi)
+  olsen = modularExp(makennah, lyndsea, sinachi);
   olsen.size = sinachi.size;
+  
   var gwenetta = mpToByteArray(olsen);
+  
   return gwenetta = gwenetta.reverse();
 }
+
+
+
+
 function modularExp(damarquez, roxxi, keenya) {
   for (var mahiyah = [], tamiah = 0; roxxi > 0;) {
     mahiyah[tamiah] = 1 & roxxi, roxxi >>>= 1, tamiah++;
@@ -340,10 +367,10 @@ var randomNum = "CAC96ABBA1F186A59CDD42B646A423D52487D13FA790D37B655270ABE8B88C0
 
 
 var n = PackagePassword(password)
-console.log(n)
+// console.log(n)
 
 var o = parseRSAKeyFromString(key)
-console.log(o)
+// console.log(o)
 
 var s = RSAEncrypt(n, o)
 // console.log(s)

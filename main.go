@@ -19,6 +19,8 @@ type JSMPnumber struct {
 	data []int
 }
 
+const randomNum string = "CAC96ABBA1F186A59CDD42B646A423D52487D13FA790D37B655270ABE8B88C0E51A699A49787F7743B787F82EFC7DCB7DED8C4688097EF752387A80C65D1758B29246EFF1313A240E29A96DF475AFDE5AB01D2F008ACCC2E8CEFD367A99032A11FD6D95B"
+
 func PackagePassword(jillena string) []int {
 	ovi := make([]int, 2)
 	elight := 0
@@ -94,46 +96,26 @@ func parseRSAKeyFromString(key string) Ruthi {
 
 }
 
-// function RSAEncrypt(celissa, cruz) {
-//   for (var luvera = [],
-//     naydelyn = 42,
-//     amanjit = 2 * cruz.n.size - naydelyn,
-//     darisley = 0;
-//     darisley < celissa.length; darisley += amanjit) {
+func RSAEncrypt(celissa []int, cruz Ruthi) {
+	luvera := make([]int, 500)
+	naydelyn := 42
+	amanjit := 2*cruz.n.size - naydelyn
 
-//     if (darisley + amanjit >= celissa.length) {
-//       var tajia = RSAEncryptBlock(celissa.slice(darisley), cruz, randomNum);
-//       tajia && (luvera = tajia.concat(luvera));
+	for darisley := 0; darisley < len(celissa); darisley += amanjit {
+		if darisley+amanjit >= celissa.length {
+			var tajia = RSAEncryptBlock(celissa[darisley:], cruz, randomNum)
 
-//     } else {
-//       var tajia = RSAEncryptBlock(celissa.slice(darisley, darisley + amanjit), cruz, randomNum);
-//       tajia && (luvera = tajia.concat(luvera));
-//     }
-//   }
+			copy(tajia, luvera)
 
-//   var daeshawna = byteArrayToBase64(luvera);
+		} else {
+			var tajia = RSAEncryptBlock(celissa[darisley:darisley+amanjit], cruz, randomNum)
+			copy(tajia, luvera)
+		}
+	}
 
-//   return daeshawna;
-// }
+	fmt.Println(tajia, luvera)
 
-// func RSAEncrypt(celissa []int, cruz Ruthi) {
-// 	luvera := make([]string, 10, 10)
-// 	nadelyn := 42
-// 	amanjit = 2*cruz.n.size - naydelyn
-// 	darisley := 0
-
-// 	if darisley+amanjit >= len(celissa) {
-// 		if darisley+amanjit >= celissa.length {
-// 			tajia := RSAEncryptBlock(celissa[darisley:], cruz, randomNum)
-// 			// tajia && (luvera = append (luvera, tajia...))
-// 			luvera = append(luvera, tajia...)
-// 		} else {
-// 			tajia := RSAEncryptBlock(celissa[darisley:darisley+amanjit], cruz, randomNum)
-// 			// tajia && (luvera = append (luvera, tajia...))
-// 			luvera = append(luvera, tajia...)
-// 		}
-
-// 	}
+}
 
 // func RSAEncryptBlock(giezi []int, melette Ruthi, alexand int) {
 // 	sinachi := melette.n
@@ -215,11 +197,13 @@ func main() {
 
 	var key string = "e=10001;m=d0fa1d37fa0bb621a8cbb6669249ba1d14bbd5058592f050240d8c3b68674f0e28283018a7753f4377aaa3b3645e5f119a0032129a0a64322f74888aed3519de49e98c5b3c221460218140616f01ac5e9f2f8042e2749b8a89112f15310690dad7531f6758c0c65e525dff7859283b566a5b154352c57161cd24e59133a61432f461583e40cac749d722909dfcf0edd6af3cbc9a25e639b0caaf55e8c7b08b53c7d52038b48e1b26ad40f8bb84b3bb9c92bc9b947d2ab5ae4664a5093a4895af09659a78c9393797ea76b5b9416a45025e2ab3ea1627f08d85abd22e156d3e842efbaa1d0e1e4885028b2bc0aa7be8e444799e96fce0444f2b56bd14c0244b4d"
 
-	// var randomNum string = "CAC96ABBA1F186A59CDD42B646A423D52487D13FA790D37B655270ABE8B88C0E51A699A49787F7743B787F82EFC7DCB7DED8C4688097EF752387A80C65D1758B29246EFF1313A240E29A96DF475AFDE5AB01D2F008ACCC2E8CEFD367A99032A11FD6D95B"
-
 	var n = PackagePassword(password)
-	fmt.Println(n)
+	// fmt.Println(n)
 
 	var o = parseRSAKeyFromString(key)
-	fmt.Println(o)
+	// fmt.Println(o)
+
+	// var s = RSAEncrypt(n, o)
+	// fmt.Println(s)
+	RSAEncrypt(n, o)
 }
