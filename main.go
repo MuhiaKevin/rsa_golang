@@ -566,7 +566,7 @@ func divideMP(abduljalil JSMPnumber, winry JSMPnumber) Zandyn{
 
 
 
-func mapByteToBase64(britanny int) {
+func mapByteToBase64(britanny int) string{
 	if britanny >= 0 && 26 > britanny {
 		return String.fromCharCode(65 + britanny)
 	} else {
