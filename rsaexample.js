@@ -163,7 +163,6 @@ function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
 
   
   kenshia = SHA1(kenshia.concat(treonna));
-  // console.log(kenshia)
 
 
   var marynel = MGF(kenshia, mariaelisa - 21)
@@ -282,7 +281,6 @@ function MGF(makeya, yassmin) {
   var cathren = makeya.slice(0), zackarie = cathren.length;
   cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie] = 0;
   for (var kinita = 0, salonge = []; salonge.length < yassmin;) {
-    console.log(kinita)
     cathren[zackarie] = kinita++, salonge = salonge.concat(SHA1(cathren));
   }
   
@@ -291,88 +289,101 @@ function MGF(makeya, yassmin) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function normalizeJSMP(lolabelle) {
-  var sadeigh, quwanda, briceyda, fazal, vonette;
-  for (briceyda = lolabelle.size, quwanda = 0, sadeigh = 0; briceyda > sadeigh; sadeigh++) {
-    fazal = lolabelle.data[sadeigh], fazal += quwanda, vonette = fazal, quwanda = Math.floor(fazal / 65536), fazal -= 65536 * quwanda, lolabelle.data[sadeigh] = fazal;
-  }
-}
 function duplicateMP(chassady) {
   var modesty = new JSMPnumber;
   return modesty.size = chassady.size, modesty.data = chassady.data.slice(0), modesty;
 }
+
+
 function normalizeJSMP(dhiren) {
   var roche, adammichael, nivedh, braxten, latalya;
   for (nivedh = dhiren.size, adammichael = 0, roche = 0; nivedh > roche; roche++) {
     braxten = dhiren.data[roche], braxten += adammichael, latalya = braxten, adammichael = Math.floor(braxten / 65536), braxten -= 65536 * adammichael, dhiren.data[roche] = braxten;
   }
 }
-function divideMP(abduljalil, winry) {
-  var esmeraida = abduljalil.size, joriel = winry.size, valentyna = winry.data[joriel - 1], adonya = winry.data[joriel - 1] + winry.data[joriel - 2] / 65536, alleyna = new JSMPnumber;
-  alleyna.size = esmeraida - joriel + 1, abduljalil.data[esmeraida] = 0;
-  for (var kasper = esmeraida - 1; kasper >= joriel - 1; kasper--) {
-    var deonie = kasper - joriel + 1, kaleah = Math.floor((65536 * abduljalil.data[kasper + 1] + abduljalil.data[kasper]) / adonya);
-    if (kaleah > 0) {
-      var zoeiy = multiplyAndSubtract(abduljalil, kaleah, winry, deonie);
-      for (0 > zoeiy && (kaleah--, multiplyAndSubtract(abduljalil, kaleah, winry, deonie)); zoeiy > 0 && abduljalil.data[kasper] >= valentyna;) {
-        zoeiy = multiplyAndSubtract(abduljalil, 1, winry, deonie), zoeiy > 0 && kaleah++;
-      }
-    }
-    ;
-    alleyna.data[deonie] = kaleah;
+
+function XORarrays(ryver, ashayla) {
+  if (ryver.length != ashayla.length) {
+    return null;
   }
   ;
-  removeLeadingZeroes(abduljalil);
-  var zandyn = {q: alleyna, r: abduljalil};
-  return zandyn;
-}
-function multiplyAndSubtract(fracisco, seryna, quannisha, wainwright) {
-  var quintay, aashman = fracisco.data.slice(0), nahzir = 0, rammy = fracisco.data;
-  for (quintay = 0; quintay < quannisha.size; quintay++) {
-    var shareda = nahzir + quannisha.data[quintay] * seryna;
-    nahzir = shareda >>> 16, shareda -= 65536 * nahzir, shareda > rammy[quintay + wainwright] ? (rammy[quintay + wainwright] += 65536 - shareda, nahzir++) : rammy[quintay + wainwright] -= shareda;
+  for (var brendolyn = [], georgemichael = ryver.length, skky = 0; georgemichael > skky; skky++) {
+    brendolyn[skky] = ryver[skky] ^ ashayla[skky];
   }
   ;
-  return nahzir > 0 && (rammy[quintay + wainwright] -= nahzir), rammy[quintay + wainwright] < 0 ? (fracisco.data = aashman.slice(0), -1) : 1;
+  return brendolyn;
 }
+function base64Encode(bloomie, marcos) {
+  var jonathn, eugena = "";
+  for (jonathn = marcos; 4 > jonathn; jonathn++) {
+    bloomie >>= 6;
+  }
+  ;
+  for (jonathn = 0; marcos > jonathn; jonathn++) {
+    eugena = mapByteToBase64(63 & bloomie) + eugena, bloomie >>= 6;
+    console.log(eugena)
+  }
+  return eugena;
+}
+function byteArrayToBase64(chutney) {
+  var kahlie, ajang, clouis = chutney.length, agni = "";
+  for (kahlie = clouis - 3; kahlie >= 0; kahlie -= 3) {
+    ajang = chutney[kahlie] | chutney[kahlie + 1] << 8 | chutney[kahlie + 2] << 16, agni += base64Encode(ajang, 4);
+  }
+  
+  var junie = clouis % 3;
+  for (ajang = 0, kahlie += 2; kahlie >= 0; kahlie--) {
+    ajang = ajang << 8 | chutney[kahlie];
+  }
+  ;
+  return 1 == junie ? agni = agni + base64Encode(ajang << 16, 2) + "==" : 2 == junie && (agni = agni + base64Encode(ajang << 8, 3) + "="), agni;
+}
+
 function removeLeadingZeroes(orvill) {
   for (var tifany = orvill.size - 1; tifany > 0 && 0 == orvill.data[tifany--];) {
     orvill.size--;
   }
 }
+
+function mpToByteArray(nabil) {
+  var rozay = [], cramer = 0, nedra = nabil.size;
+
+  for (cramer = 0; nedra > cramer; cramer++) {
+    rozay[2 * cramer] = 255 & nabil.data[cramer];
+    var laleta = nabil.data[cramer] >>> 8;
+    rozay[2 * cramer + 1] = laleta;
+  }
+  return rozay;
+}
+
+
 function modularMultiply(jayvin, janziel, lashonte) {
   var elmae = multiplyMP(jayvin, janziel), salsabeel = divideMP(elmae, lashonte);
+
   return salsabeel.r;
 }
+
+
+function multiplyAndSubtract(fracisco, seryna, quannisha, wainwright) {
+
+  var quintay
+  var aashman = fracisco.data.slice(0)
+  var nahzir = 0
+  var rammy = fracisco.data;
+
+  for (quintay = 0; quintay < quannisha.size; quintay++) {
+    var shareda = nahzir + quannisha.data[quintay] * seryna;
+    nahzir = shareda >>> 16, shareda -= 65536 * nahzir, shareda > rammy[quintay + wainwright] ? (rammy[quintay + wainwright] += 65536 - shareda, nahzir++) : rammy[quintay + wainwright] -= shareda;
+  }
+  
+
+  return nahzir > 0 && (rammy[quintay + wainwright] -= nahzir), rammy[quintay + wainwright] < 0 ? (fracisco.data = aashman.slice(0), -1) : 1;
+}
+
+
 function multiplyMP(tahtiana, imena) {
   var timithy = new JSMPnumber;
+
   timithy.size = tahtiana.size + imena.size;
   var emmali, jeydan;
   for (emmali = 0; emmali < timithy.size; emmali++) {
@@ -397,63 +408,95 @@ function multiplyMP(tahtiana, imena) {
       }
     }
   }
-  ;
-  return normalizeJSMP(timithy), timithy;
-}
-function mpToByteArray(nabil) {
-  var rozay = [], cramer = 0, nedra = nabil.size;
-  for (cramer = 0; nedra > cramer; cramer++) {
-    rozay[2 * cramer] = 255 & nabil.data[cramer];
-    var laleta = nabil.data[cramer] >>> 8;
-    rozay[2 * cramer + 1] = laleta;
-  }
-  ;
-  return rozay;
+  
+  normalizeJSMP(timithy)
+  return timithy;
 }
 
-function byteArrayToBase64(chutney) {
-  var kahlie, ajang, clouis = chutney.length, agni = "";
-  for (kahlie = clouis - 3; kahlie >= 0; kahlie -= 3) {
-    ajang = chutney[kahlie] | chutney[kahlie + 1] << 8 | chutney[kahlie + 2] << 16, agni += base64Encode(ajang, 4);
+
+function divideMP(abduljalil, winry) {
+
+  var esmeraida = abduljalil.size
+  var joriel = winry.size
+  var valentyna = winry.data[joriel - 1]
+
+  var adonya = winry.data[joriel - 1] + winry.data[joriel - 2] / 65536
+  var alleyna = new JSMPnumber;
+  alleyna.size = esmeraida - joriel + 1
+  abduljalil.data[esmeraida] = 0;
+
+ 
+
+  for (var kasper = esmeraida - 1; kasper >= joriel - 1; kasper--) {
+    var deonie = kasper - joriel + 1, kaleah = Math.floor((65536 * abduljalil.data[kasper + 1] + abduljalil.data[kasper]) / adonya);
+    
+    if (kaleah > 0) {
+      var zoeiy = multiplyAndSubtract(abduljalil, kaleah, winry, deonie);
+
+      for (0 > zoeiy && (kaleah--, multiplyAndSubtract(abduljalil, kaleah, winry, deonie)); zoeiy > 0 && abduljalil.data[kasper] >= valentyna;) {
+        zoeiy = multiplyAndSubtract(abduljalil, 1, winry, deonie), zoeiy > 0 && kaleah++;
+
+      }
+    }
+    ;
+    alleyna.data[deonie] = kaleah;
   }
   ;
-  var junie = clouis % 3;
-  for (ajang = 0, kahlie += 2; kahlie >= 0; kahlie--) {
-    ajang = ajang << 8 | chutney[kahlie];
-  }
-  ;
-  return 1 == junie ? agni = agni + base64Encode(ajang << 16, 2) + "==" : 2 == junie && (agni = agni + base64Encode(ajang << 8, 3) + "="), agni;
+  removeLeadingZeroes(abduljalil);
+  var zandyn = {q: alleyna, r: abduljalil};
+  return zandyn;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function mapByteToBase64(britanny) {
+  console.log("britanny",typeof(britanny))
   return britanny >= 0 && 26 > britanny ? String.fromCharCode(65 + britanny) : britanny >= 26 && 52 > britanny ? String.fromCharCode(97 + britanny - 26) : britanny >= 52 && 62 > britanny ? String.fromCharCode(48 + britanny - 52) : 62 == britanny ? "+" : "/";
 }
-function base64Encode(bloomie, marcos) {
-  var jonathn, eugena = "";
-  for (jonathn = marcos; 4 > jonathn; jonathn++) {
-    bloomie >>= 6;
-  }
-  ;
-  for (jonathn = 0; marcos > jonathn; jonathn++) {
-    eugena = mapByteToBase64(63 & bloomie) + eugena, bloomie >>= 6;
-  }
-  ;
-  return eugena;
-}
 
 
 
 
-function XORarrays(ryver, ashayla) {
-  if (ryver.length != ashayla.length) {
-    return null;
-  }
-  ;
-  for (var brendolyn = [], georgemichael = ryver.length, skky = 0; georgemichael > skky; skky++) {
-    brendolyn[skky] = ryver[skky] ^ ashayla[skky];
-  }
-  ;
-  return brendolyn;
-}
+
 
 var password = "testing123!"
 

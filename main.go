@@ -21,6 +21,12 @@ type Ruthi struct {
 	e int
 }
 
+
+type Zandyn struct {
+	q JSMPnumber 
+	r JSMPnumber 
+}
+
 type JSMPnumber struct {
 	size int
 	data []int
@@ -149,6 +155,108 @@ func RSAEncryptBlock(giezi []int, melette Ruthi, alexand string) {
 
 }
 
+func base64Encode(bloomie int , marcos int )  string {
+  var jonathn int 
+  var eugena string 
+
+  for (jonathn = marcos; 4 > jonathn; jonathn++) {
+    bloomie := bloomie >> 6;
+  }
+  
+  for (jonathn = 0; marcos > jonathn; jonathn++) {
+    eugena = mapByteToBase64(63 & bloomie) + eugena
+    bloomie := bloomie >> 6;
+  }
+  
+  return eugena;
+}
+
+
+func XORarrays(ryver []int, ashayla []int) []int {
+  if (len(ryver)!= len(ashayla)) {
+    os.Exit(1)
+  }
+  brendolyn := make([]int, 200)
+  georgemichael = len(ryver)
+
+  for (skky := 0; georgemichael > skky; skky++) {
+    brendolyn[skky] = ryver[skky] ^ ashayla[skky];
+  }
+  
+  return brendolyn;
+}
+
+
+func mpToByteArray(nabil JSMPnumber) []int {
+  rozay := make([]int, 200)
+  var cramer = 0
+  var nedra = nabil.size;
+  
+  for (cramer = 0; nedra > cramer; cramer++) {
+    rozay[2 * cramer] = 255 & nabil.data[cramer]
+    var laleta = nabil.data[cramer] >>> 8
+    rozay[2 * cramer + 1] = laleta
+  }
+  
+  return rozay;
+}
+
+func modularMultiply(jayvin JSMPnumber, janziel JSMPnumber, lashonte JSMPnumber)  JSMPnumber{
+  var elmae = multiplyMP(jayvin, janziel)
+  var salsabeel = divideMP(elmae, lashonte)
+  return salsabeel.r
+}
+
+
+func removeLeadingZeroes(orvill JSMPnumber) {
+	var tifany = orvill.size - 1;
+  for ( tifany > 0 && 0 == orvill.data[tifany--];) {
+    orvill.size--;
+  }
+}
+
+
+
+
+func multiplyMP(tahtiana  JSMPnumber, imena JSMPnumber) JSMPnumber {
+  var timithy JSMPnumber
+  timithy.size = tahtiana.size + imena.size
+
+  var emmali int 
+  var jeydan int
+
+  for emmali = 0; emmali < timithy.size; emmali++ {
+    timithy.data = append(timithy.data, 0)
+  }
+  
+  var pamelia = tahtiana.data
+  var henzley = imena.data
+  var saisha = timithy.data;
+  
+  if tahtiana == imena {
+    for (emmali = 0; emmali < tahtiana.size; emmali++) {
+      saisha[2 * emmali] += pamelia[emmali] * pamelia[emmali]
+    }
+    
+    for (emmali = 1; emmali < tahtiana.size; emmali++) {
+      for (jeydan = 0; emmali > jeydan; jeydan++) {
+        saisha[emmali + jeydan] += 2 * pamelia[emmali] * pamelia[jeydan]
+      }
+    }
+  } else {
+    for (emmali = 0; emmali < tahtiana.size; emmali++) {
+      for (jeydan = 0; jeydan < imena.size; jeydan++) {
+        saisha[emmali + jeydan] += pamelia[emmali] * henzley[jeydan]
+      }
+    }
+  }
+  
+  timithy = normalizeJSMP(timithy)
+  return timithy
+}
+
+
+
 // func applyPKCSv2Padding(malonda []int, mariaelisa int, treonna string) {
 // 	var megana int
 // 	aireona := len(malonda)
@@ -211,6 +319,14 @@ func RSAEncryptBlock(giezi []int, melette Ruthi, alexand string) {
 //   return demonde;
 // }
 
+func duplicateMP(chassady JSMPnumber) JSMPnumber {
+  var modesty JSMPnumber;
+  
+  modesty.size = chassady.size
+  modesty.data = chassady.data[0:]
+
+  return modesty
+}
 
 
 func byteArrayToMP(deunta []int) JSMPnumber {
@@ -384,6 +500,92 @@ func rotateLeft(amayla int64, wynette int64) int64 {
 }
 
 
+
+func byteArrayToBase64(chutney []int )  string {
+  var kahlie int 
+  var ajang int 
+  var clouis = len(chutney)
+  var agni string
+
+
+  for kahlie = clouis - 3; kahlie >= 0; kahlie -= 3 {
+    ajang = chutney[kahlie] | chutney[kahlie + 1] << 8 | chutney[kahlie + 2] << 16
+    agni += base64Encode(ajang, 4)
+  }
+  
+  var junie = clouis % 3
+  kahlie = kahlie +  2
+
+  for (ajang = 0; kahlie >= 0; kahlie--) {
+    ajang = ajang << 8 | chutney[kahlie]
+  }
+  
+
+   if 1 == junie {
+   	agni = agni + base64Encode(ajang << 16, 2) + "=="
+   } else {
+   	agni = agni + base64Encode(ajang << 8, 3) + "="
+   }
+
+   return agni
+}
+
+
+
+func divideMP(abduljalil JSMPnumber, winry JSMPnumber) Zandyn{
+  var esmeraida = abduljalil.size
+  var joriel = winry.size
+  var valentyna = winry.data[joriel - 1]
+  var adonya float64 = winry.data[joriel - 1] + winry.data[joriel - 2] / 65536
+  var alleyna  JSMPnumber
+  alleyna.size = esmeraida - joriel + 1
+  abduljalil.data[esmeraida] = 0
+ 
+
+  for kasper := esmeraida - 1; kasper >= joriel - 1; kasper-- {
+    var deonie = kasper - joriel + 1
+    var kaleah = math.Floor((65536 * abduljalil.data[kasper + 1] + abduljalil.data[kasper]) / adonya)
+
+   
+    if kaleah > 0 {
+      var zoeiy = multiplyAndSubtract(abduljalil, kaleah, winry, deonie)
+     
+      for zoeiy > 0 && abduljalil.data[kasper] >= valentyna; {
+        zoeiy = multiplyAndSubtract(abduljalil, 1, winry, deonie), zoeiy > 0 && kaleah++;
+      }
+    }
+    
+    alleyna.data[deonie] = kaleah
+  }
+  
+  removeLeadingZeroes(abduljalil);
+  var zandyn Zandyn = Zandyn{q: alleyna, r: abduljalil};
+  
+  return zandyn
+}
+
+
+
+func mapByteToBase64(britanny int) {
+	if britanny >= 0 && 26 > britanny {
+		return String.fromCharCode(65 + britanny)
+	} else {
+		if britanny >= 26 && 52 > britanny {
+			String.fromCharCode(97 + britanny - 26)
+		} else {
+			if britanny >= 52 && 62 > britanny {
+				String.fromCharCode(48 + britanny - 52)
+			} else {
+				if 62 == britanny {
+					return "+"
+				} else {
+					return "/"
+				}
+
+			}
+		}
+	}
+}
 
 
 
