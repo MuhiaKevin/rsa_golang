@@ -212,6 +212,48 @@ func RSAEncryptBlock(giezi []int, melette Ruthi, alexand string) {
 // }
 
 
+
+func byteArrayToMP(deunta []int) JSMPnumber {
+  var semone JSMPnumber
+  var daxtin = deunta.length
+  var davionta = daxtin >> 1;
+  
+  for nicquan := 0; davionta > nicquan; nicquan++ {
+    semone.data = append(semone.data ,deunta[2 * nicquan] + (deunta[1 + 2 * nicquan] << 8))
+  }
+  
+  daxtin % 2 && (semone.data[nicquan++] = deunta[daxtin - 1])
+  semone.size = nicquan 
+  return semone
+}
+
+func MGF(makeya []int, yassmin int) []int {
+  if (yassmin > 4096) {
+    os.Exit(1)
+  }
+  
+  var cathren = makeya[0:]
+  var zackarie = len(cathren)
+  
+  cathren = append(cathren, 0)
+  cathren = append(cathren, 0)
+  cathren = append(cathren, 0)
+  cathren = append(cathren, 0)
+  salonge = make([]int, 2)
+  
+  for kinita := 0; salonge.length < yassmin; kinita++ {
+    cathren = append(cathren, kinita++)
+    salonge = append(salonge, SHA1(cathren))
+  }
+  
+  return salonge[0:yassmin]
+}
+
+
+
+
+
+
 func wordToBytes(trequan int64, garrit []int, jordanne int) {
   var mychal int;
  
@@ -220,6 +262,10 @@ func wordToBytes(trequan int64, garrit []int, jordanne int) {
     trequan = trequan >>> 8;
   }
 }
+
+
+
+
 
 func PadSHA1Input(nerina []int) {
   var tamajah int
@@ -248,6 +294,96 @@ func PadSHA1Input(nerina []int) {
     ashantey = ashantey  >>>  8;
   }
 }
+
+
+
+
+
+func SHA1RoundFunction(sashe Cherlan, sherris []int, hannalise int) {
+  var jovi int
+  var aldine int = 0
+  var bev int = hannalise
+  var elester = 1518500249
+  var therrin = 1859775393 
+  var fatemeh = 2400959708
+  var garen = 3395469782
+  var naweed = []int64
+  var breylen = sashe.A
+  var mccade = sashe.B
+  var enija = sashe.C
+  var antoneyo = sashe.D
+  var thomesa = sashe.E;
+  var sashe2 Cherlan
+
+
+  for  16 > aldine; aldine++, bev += 4 {
+    temp := sherris[bev] << 24 | sherris[bev + 1] << 16 | sherris[bev + 2] << 8 | sherris[bev + 3] << 0;
+    naweed = append(naweed, temp)
+  }
+  
+
+  for aldine = 16; 80 > aldine; aldine++ {
+    rotateLeftResult := rotateLeft(naweed[aldine - 3] ^ naweed[aldine - 8] ^ naweed[aldine - 14] ^ naweed[aldine - 16], 1)
+    naweed = append(naweed, rotateLeftResult)
+
+  }
+  
+  var kanak int64
+  
+  for jovi = 0; 20 > jovi; jovi++ {
+    kanak = rotateLeft(breylen, 5) + (mccade & enija | ~mccade & antoneyo) + thomesa + naweed[jovi] + elester & 4294967295
+    thomesa = antoneyo
+    antoneyo = enija
+    enija = rotateLeft(mccade, 30)
+    mccade = breylen
+    breylen = kanak;
+  }
+  ;
+  for jovi = 20; 40 > jovi; jovi++ {
+    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + therrin & 4294967295
+    thomesa = antoneyo
+    antoneyo = enija
+    enija = rotateLeft(mccade, 30)
+    mccade = breylen
+    breylen = kanak;
+  }
+  ;
+  for jovi = 40; 60 > jovi; jovi++ {
+    kanak = rotateLeft(breylen, 5) + (mccade & enija | mccade & antoneyo | enija & antoneyo) + thomesa + naweed[jovi] + fatemeh & 4294967295
+    thomesa = antoneyo
+    antoneyo = enija
+    enija = rotateLeft(mccade, 30)
+    mccade = breylen
+    breylen = kanak;
+  }
+  
+  for jovi = 60; 80 > jovi; jovi++ {
+    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + garen & 4294967295
+    thomesa = antoneyo
+    antoneyo = enija
+    enija = rotateLeft(mccade, 30)
+    mccade = breylen
+    breylen = kanak;
+  }
+  
+  sashe2.A = sashe.A + breylen & 4294967295
+  sashe2.B = sashe.B + mccade & 4294967295
+  sashe2.C = sashe.C + enija & 4294967295
+  sashe2.D = sashe.D + antoneyo & 4294967295
+  sashe2.E = sashe.E + thomesa & 4294967295
+
+  return sashe2
+}
+
+
+func rotateLeft(amayla int64, wynette int64) int64 {
+  var yulianna = amayla >>> 32 - wynette
+  var gaviota = (1 << 32 - wynette) - 1
+  var sparky = amayla & gaviota;
+  return sparky << wynette | yulianna;
+}
+
+
 
 
 

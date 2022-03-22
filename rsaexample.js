@@ -124,6 +124,200 @@ function modularExp(damarquez, roxxi, keenya) {
   ;
   return sequoyah;
 }
+
+
+
+function byteArrayToMP(deunta) {
+  var semone = new JSMPnumber, nicquan = 0, daxtin = deunta.length, davionta = daxtin >> 1;
+  for (nicquan = 0; davionta > nicquan; nicquan++) {
+    semone.data[nicquan] = deunta[2 * nicquan] + (deunta[1 + 2 * nicquan] << 8);
+  }
+  ;
+  return daxtin % 2 && (semone.data[nicquan++] = deunta[daxtin - 1]), semone.size = nicquan, semone;
+}
+
+
+
+
+function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
+  var megana
+  var aireona = malonda.length
+  var glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]
+  var marlika = mariaelisa - aireona - 40 - 2
+  var toy = [];
+  
+  for (megana = 0; marlika > megana; megana++) {
+    toy[megana] = 0;
+  }
+  
+
+  toy[marlika] = 1;
+
+  var emonee = glenese.concat(toy, malonda)
+  var kenshia = [];
+
+  
+  for (megana = 0; 20 > megana; megana++) {
+    kenshia[megana] = Math.floor(256 * Math.random());
+  }
+
+  
+  kenshia = SHA1(kenshia.concat(treonna));
+  // console.log(kenshia)
+
+
+  var marynel = MGF(kenshia, mariaelisa - 21)
+  var jacqueli = XORarrays(emonee, marynel)
+  var rome = MGF(jacqueli, 20)
+  var voronica = XORarrays(kenshia, rome)
+  var yeleina = [];
+
+  for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
+    malonda[megana] = yeleina[megana];
+  }
+}
+
+
+
+
+
+
+
+
+function SHA1(desaree) {
+  var britnee
+  var chabelli = desaree.slice(0);
+
+  PadSHA1Input(chabelli);
+
+  var cherylan = {A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
+
+  for (britnee = 0; britnee < chabelli.length; britnee += 64) {
+    SHA1RoundFunction(cherylan, chabelli, britnee);
+  }
+  
+
+  var demonde = [];
+  return wordToBytes(cherylan.A, demonde, 0), wordToBytes(cherylan.B, demonde, 4), wordToBytes(cherylan.C, demonde, 8), wordToBytes(cherylan.D, demonde, 12), wordToBytes(cherylan.E, demonde, 16), demonde;
+}
+
+
+
+
+function wordToBytes(trequan, garrit, jordanne) {
+  var mychal;
+  for (mychal = 3; mychal >= 0; mychal--) {
+    garrit[jordanne + mychal] = 255 & trequan, trequan >>>= 8;
+  }
+}
+
+
+function PadSHA1Input(nerina) {
+  var tamajah
+  var alla = nerina.length
+  var amaurion = alla
+  var divonte = alla % 64
+  var brejon = 55 > divonte ? 56 : 120;
+  nerina[amaurion++] = 128
+
+  for (tamajah = divonte + 1; brejon > tamajah; tamajah++) {
+    nerina[amaurion++] = 0;
+  }
+  
+  var ashantey = 8 * alla;
+  for (tamajah = 1; 8 > tamajah; tamajah++) {
+    nerina[amaurion + 8 - tamajah] = 255 & ashantey, ashantey >>>= 8;
+  }
+}
+
+
+
+
+function SHA1RoundFunction(sashe, sherris, hannalise) {
+  var jovi, aldine, bev, elester = 1518500249, therrin = 1859775393, fatemeh = 2400959708, garen = 3395469782, naweed = [], breylen = sashe.A, mccade = sashe.B, enija = sashe.C, antoneyo = sashe.D, thomesa = sashe.E;
+  for (aldine = 0, bev = hannalise; 16 > aldine; aldine++, bev += 4) {
+    naweed[aldine] = sherris[bev] << 24 | sherris[bev + 1] << 16 | sherris[bev + 2] << 8 | sherris[bev + 3] << 0;
+  }
+  ;
+  for (aldine = 16; 80 > aldine; aldine++) {
+
+    naweed[aldine] = rotateLeft(naweed[aldine - 3] ^ naweed[aldine - 8] ^ naweed[aldine - 14] ^ naweed[aldine - 16], 1);
+  }
+  ;
+  var kanak;
+  for (jovi = 0; 20 > jovi; jovi++) {
+    kanak = rotateLeft(breylen, 5) + (mccade & enija | ~mccade & antoneyo) + thomesa + naweed[jovi] + elester & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
+  }
+  ;
+  for (jovi = 20; 40 > jovi; jovi++) {
+    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + therrin & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
+  }
+  ;
+  for (jovi = 40; 60 > jovi; jovi++) {
+    kanak = rotateLeft(breylen, 5) + (mccade & enija | mccade & antoneyo | enija & antoneyo) + thomesa + naweed[jovi] + fatemeh & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
+  }
+  ;
+  for (jovi = 60; 80 > jovi; jovi++) {
+    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + garen & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
+  }
+  ;
+  sashe.A = sashe.A + breylen & 4294967295, sashe.B = sashe.B + mccade & 4294967295, sashe.C = sashe.C + enija & 4294967295, sashe.D = sashe.D + antoneyo & 4294967295, sashe.E = sashe.E + thomesa & 4294967295;
+}
+
+
+
+
+function rotateLeft(amayla, wynette) {
+  var yulianna = amayla >>> 32 - wynette, gaviota = (1 << 32 - wynette) - 1, sparky = amayla & gaviota;
+  return sparky << wynette | yulianna;
+}
+
+
+
+function MGF(makeya, yassmin) {
+  if (yassmin > 4096) {
+    return null;
+  }
+  
+  var cathren = makeya.slice(0), zackarie = cathren.length;
+  cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie] = 0;
+  for (var kinita = 0, salonge = []; salonge.length < yassmin;) {
+    console.log(kinita)
+    cathren[zackarie] = kinita++, salonge = salonge.concat(SHA1(cathren));
+  }
+  
+  return salonge.slice(0, yassmin);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function normalizeJSMP(lolabelle) {
   var sadeigh, quwanda, briceyda, fazal, vonette;
   for (briceyda = lolabelle.size, quwanda = 0, sadeigh = 0; briceyda > sadeigh; sadeigh++) {
@@ -216,14 +410,7 @@ function mpToByteArray(nabil) {
   ;
   return rozay;
 }
-function byteArrayToMP(deunta) {
-  var semone = new JSMPnumber, nicquan = 0, daxtin = deunta.length, davionta = daxtin >> 1;
-  for (nicquan = 0; davionta > nicquan; nicquan++) {
-    semone.data[nicquan] = deunta[2 * nicquan] + (deunta[1 + 2 * nicquan] << 8);
-  }
-  ;
-  return daxtin % 2 && (semone.data[nicquan++] = deunta[daxtin - 1]), semone.size = nicquan, semone;
-}
+
 function byteArrayToBase64(chutney) {
   var kahlie, ajang, clouis = chutney.length, agni = "";
   for (kahlie = clouis - 3; kahlie >= 0; kahlie -= 3) {
@@ -254,150 +441,8 @@ function base64Encode(bloomie, marcos) {
 }
 
 
-function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
-  var megana
-  var aireona = malonda.length
-  var glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]
-  var marlika = mariaelisa - aireona - 40 - 2
-  var toy = [];
-  
-  for (megana = 0; marlika > megana; megana++) {
-    toy[megana] = 0;
-  }
-  
-
-  toy[marlika] = 1;
-
-  var emonee = glenese.concat(toy, malonda)
-  var kenshia = [];
-
-  
-  for (megana = 0; 20 > megana; megana++) {
-    kenshia[megana] = Math.floor(256 * Math.random());
-  }
-
-  
-  kenshia = SHA1(kenshia.concat(treonna));
-  console.log(kenshia)
 
 
-  var marynel = MGF(kenshia, mariaelisa - 21)
-  var jacqueli = XORarrays(emonee, marynel)
-  var rome = MGF(jacqueli, 20)
-  var voronica = XORarrays(kenshia, rome)
-  var yeleina = [];
-
-  for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
-    malonda[megana] = yeleina[megana];
-  }
-}
-
-
-
-
-
-
-
-
-function SHA1(desaree) {
-  var britnee
-  var chabelli = desaree.slice(0);
-
-  PadSHA1Input(chabelli);
-
-  var cherylan = {A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
-
-  for (britnee = 0; britnee < chabelli.length; britnee += 64) {
-    SHA1RoundFunction(cherylan, chabelli, britnee);
-  }
-  
-
-  var demonde = [];
-  return wordToBytes(cherylan.A, demonde, 0), wordToBytes(cherylan.B, demonde, 4), wordToBytes(cherylan.C, demonde, 8), wordToBytes(cherylan.D, demonde, 12), wordToBytes(cherylan.E, demonde, 16), demonde;
-}
-
-
-
-
-function wordToBytes(trequan, garrit, jordanne) {
-  var mychal;
-  for (mychal = 3; mychal >= 0; mychal--) {
-    garrit[jordanne + mychal] = 255 & trequan, trequan >>>= 8;
-  }
-}
-
-
-function PadSHA1Input(nerina) {
-  var tamajah
-  var alla = nerina.length
-  var amaurion = alla
-  var divonte = alla % 64
-  var brejon = 55 > divonte ? 56 : 120;
-  nerina[amaurion++] = 128
-
-  for (tamajah = divonte + 1; brejon > tamajah; tamajah++) {
-    nerina[amaurion++] = 0;
-  }
-  
-  var ashantey = 8 * alla;
-  for (tamajah = 1; 8 > tamajah; tamajah++) {
-    nerina[amaurion + 8 - tamajah] = 255 & ashantey, ashantey >>>= 8;
-  }
-}
-
-
-
-
-function SHA1RoundFunction(sashe, sherris, hannalise) {
-  var jovi, aldine, bev, elester = 1518500249, therrin = 1859775393, fatemeh = 2400959708, garen = 3395469782, naweed = [], breylen = sashe.A, mccade = sashe.B, enija = sashe.C, antoneyo = sashe.D, thomesa = sashe.E;
-  for (aldine = 0, bev = hannalise; 16 > aldine; aldine++, bev += 4) {
-    naweed[aldine] = sherris[bev] << 24 | sherris[bev + 1] << 16 | sherris[bev + 2] << 8 | sherris[bev + 3] << 0;
-  }
-  ;
-  for (aldine = 16; 80 > aldine; aldine++) {
-    naweed[aldine] = rotateLeft(naweed[aldine - 3] ^ naweed[aldine - 8] ^ naweed[aldine - 14] ^ naweed[aldine - 16], 1);
-  }
-  ;
-  var kanak;
-  for (jovi = 0; 20 > jovi; jovi++) {
-    kanak = rotateLeft(breylen, 5) + (mccade & enija | ~mccade & antoneyo) + thomesa + naweed[jovi] + elester & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
-  }
-  ;
-  for (jovi = 20; 40 > jovi; jovi++) {
-    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + therrin & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
-  }
-  ;
-  for (jovi = 40; 60 > jovi; jovi++) {
-    kanak = rotateLeft(breylen, 5) + (mccade & enija | mccade & antoneyo | enija & antoneyo) + thomesa + naweed[jovi] + fatemeh & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
-  }
-  ;
-  for (jovi = 60; 80 > jovi; jovi++) {
-    kanak = rotateLeft(breylen, 5) + (mccade ^ enija ^ antoneyo) + thomesa + naweed[jovi] + garen & 4294967295, thomesa = antoneyo, antoneyo = enija, enija = rotateLeft(mccade, 30), mccade = breylen, breylen = kanak;
-  }
-  ;
-  sashe.A = sashe.A + breylen & 4294967295, sashe.B = sashe.B + mccade & 4294967295, sashe.C = sashe.C + enija & 4294967295, sashe.D = sashe.D + antoneyo & 4294967295, sashe.E = sashe.E + thomesa & 4294967295;
-}
-
-
-
-
-function rotateLeft(amayla, wynette) {
-  var yulianna = amayla >>> 32 - wynette, gaviota = (1 << 32 - wynette) - 1, sparky = amayla & gaviota;
-  return sparky << wynette | yulianna;
-}
-function MGF(makeya, yassmin) {
-  if (yassmin > 4096) {
-    return null;
-  }
-  ;
-  var cathren = makeya.slice(0), zackarie = cathren.length;
-  cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie++] = 0, cathren[zackarie] = 0;
-  for (var kinita = 0, salonge = []; salonge.length < yassmin;) {
-    cathren[zackarie] = kinita++, salonge = salonge.concat(SHA1(cathren));
-  }
-  ;
-  return salonge.slice(0, yassmin);
-}
 function XORarrays(ryver, ashayla) {
   if (ryver.length != ashayla.length) {
     return null;
