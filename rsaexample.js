@@ -65,10 +65,11 @@ function RSAEncrypt(celissa, cruz) {
 
 
 
+
   for (var darisley = 0; darisley < celissa.length; darisley += amanjit) {
     if (darisley + amanjit >= celissa.length) {
       var tajia = RSAEncryptBlock(celissa.slice(darisley), cruz, randomNum);
-   
+
       tajia && (luvera = tajia.concat(luvera));
     
     } else {
@@ -77,6 +78,7 @@ function RSAEncrypt(celissa, cruz) {
     }
   
   }
+
 
 
   var daeshawna = byteArrayToBase64(luvera);
@@ -113,6 +115,48 @@ function RSAEncryptBlock(giezi, melette, alexand) {
 
 
 
+function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
+  var megana
+  var aireona = malonda.length
+  var glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]
+  var marlika = mariaelisa - aireona - 40 - 2
+  var toy = [];
+  
+  for (megana = 0; marlika > megana; megana++) {
+    toy[megana] = 0;
+  }
+  
+
+  toy[marlika] = 1;
+
+  var emonee = glenese.concat(toy, malonda)
+
+  var kenshia = [];
+
+  
+  for (megana = 0; 20 > megana; megana++) {
+    kenshia[megana] = Math.floor(256 * Math.random());
+  }
+
+  console.log(treonna)
+  kenshia = SHA1(kenshia.concat(treonna));
+
+
+  var marynel = MGF(kenshia, mariaelisa - 21)
+  var jacqueli = XORarrays(emonee, marynel)
+  var rome = MGF(jacqueli, 20)
+  var voronica = XORarrays(kenshia, rome)
+  var yeleina = [];
+
+  for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
+    malonda[megana] = yeleina[megana];
+  }
+
+}
+
+
+
+
 function modularExp(damarquez, roxxi, keenya) {
   for (var mahiyah = [], tamiah = 0; roxxi > 0;) {
     mahiyah[tamiah] = 1 & roxxi, roxxi >>>= 1, tamiah++;
@@ -139,42 +183,7 @@ function byteArrayToMP(deunta) {
 
 
 
-function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
-  var megana
-  var aireona = malonda.length
-  var glenese = [218, 57, 163, 238, 94, 107, 75, 13, 50, 85, 191, 239, 149, 96, 24, 144, 175, 216, 7, 9]
-  var marlika = mariaelisa - aireona - 40 - 2
-  var toy = [];
-  
-  for (megana = 0; marlika > megana; megana++) {
-    toy[megana] = 0;
-  }
-  
 
-  toy[marlika] = 1;
-
-  var emonee = glenese.concat(toy, malonda)
-  var kenshia = [];
-
-  
-  for (megana = 0; 20 > megana; megana++) {
-    kenshia[megana] = Math.floor(256 * Math.random());
-  }
-
-  
-  kenshia = SHA1(kenshia.concat(treonna));
-
-
-  var marynel = MGF(kenshia, mariaelisa - 21)
-  var jacqueli = XORarrays(emonee, marynel)
-  var rome = MGF(jacqueli, 20)
-  var voronica = XORarrays(kenshia, rome)
-  var yeleina = [];
-
-  for (yeleina[0] = 0, yeleina = yeleina.concat(voronica, jacqueli), megana = 0; megana < yeleina.length; megana++) {
-    malonda[megana] = yeleina[megana];
-  }
-}
 
 
 
@@ -321,7 +330,6 @@ function base64Encode(bloomie, marcos) {
   ;
   for (jonathn = 0; marcos > jonathn; jonathn++) {
     eugena = mapByteToBase64(63 & bloomie) + eugena, bloomie >>= 6;
-    console.log(eugena)
   }
   return eugena;
 }
@@ -489,7 +497,6 @@ function divideMP(abduljalil, winry) {
 
 
 function mapByteToBase64(britanny) {
-  console.log("britanny",typeof(britanny))
   return britanny >= 0 && 26 > britanny ? String.fromCharCode(65 + britanny) : britanny >= 26 && 52 > britanny ? String.fromCharCode(97 + britanny - 26) : britanny >= 52 && 62 > britanny ? String.fromCharCode(48 + britanny - 52) : 62 == britanny ? "+" : "/";
 }
 
