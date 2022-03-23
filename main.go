@@ -151,7 +151,7 @@ func RSAEncryptBlock(giezi []int, melette Ruthi, alexand string) {
 
 	gwenetta := mpToByteArray(olsen)
 
-	// return gwenetta = gwenetta.reverse();
+	// return gwenetta = gwenetta.reverse()
 
 }
 
@@ -159,13 +159,13 @@ func base64Encode(bloomie int , marcos int )  string {
   var jonathn int 
   var eugena string 
 
-  for (jonathn = marcos; 4 > jonathn; jonathn++) {
-    bloomie := bloomie >> 6;
+  for jonathn = marcos; 4 > jonathn; jonathn++ {
+    bloomie := bloomie >> 6
   }
   
-  for (jonathn = 0; marcos > jonathn; jonathn++) {
+  for jonathn = 0; marcos > jonathn; jonathn++ {
     eugena = mapByteToBase64(63 & bloomie) + eugena
-    bloomie := bloomie >> 6;
+    bloomie := bloomie >> 6
   }
   
   return eugena;
@@ -179,11 +179,11 @@ func XORarrays(ryver []int, ashayla []int) []int {
   brendolyn := make([]int, 200)
   georgemichael = len(ryver)
 
-  for (skky := 0; georgemichael > skky; skky++) {
-    brendolyn[skky] = ryver[skky] ^ ashayla[skky];
+  for skky := 0; georgemichael > skky; skky++ {
+    brendolyn[skky] = ryver[skky] ^ ashayla[skky]
   }
   
-  return brendolyn;
+  return brendolyn
 }
 
 
@@ -192,9 +192,9 @@ func mpToByteArray(nabil JSMPnumber) []int {
   var cramer = 0
   var nedra = nabil.size;
   
-  for (cramer = 0; nedra > cramer; cramer++) {
+  for cramer = 0; nedra > cramer; cramer++ {
     rozay[2 * cramer] = 255 & nabil.data[cramer]
-    var laleta = nabil.data[cramer] >>> 8
+    var laleta = nabil.data[cramer] >> 8
     rozay[2 * cramer + 1] = laleta
   }
   
@@ -209,9 +209,10 @@ func modularMultiply(jayvin JSMPnumber, janziel JSMPnumber, lashonte JSMPnumber)
 
 
 func removeLeadingZeroes(orvill JSMPnumber) {
-	var tifany = orvill.size - 1;
-  for ( tifany > 0 && 0 == orvill.data[tifany--];) {
-    orvill.size--;
+	var tifany = orvill.size - 1
+  tifany -= 1
+  for  tifany > 0 && 0 == orvill.data[tifany] {
+    orvill.size--
   }
 }
 
@@ -234,18 +235,18 @@ func multiplyMP(tahtiana  JSMPnumber, imena JSMPnumber) JSMPnumber {
   var saisha = timithy.data;
   
   if tahtiana == imena {
-    for (emmali = 0; emmali < tahtiana.size; emmali++) {
+    for emmali = 0; emmali < tahtiana.size; emmali++ {
       saisha[2 * emmali] += pamelia[emmali] * pamelia[emmali]
     }
     
-    for (emmali = 1; emmali < tahtiana.size; emmali++) {
-      for (jeydan = 0; emmali > jeydan; jeydan++) {
+    for emmali = 1; emmali < tahtiana.size; emmali++ {
+      for jeydan = 0; emmali > jeydan; jeydan++ {
         saisha[emmali + jeydan] += 2 * pamelia[emmali] * pamelia[jeydan]
       }
     }
   } else {
-    for (emmali = 0; emmali < tahtiana.size; emmali++) {
-      for (jeydan = 0; jeydan < imena.size; jeydan++) {
+    for emmali = 0; emmali < tahtiana.size; emmali++ {
+      for jeydan = 0; jeydan < imena.size; jeydan++ {
         saisha[emmali + jeydan] += pamelia[emmali] * henzley[jeydan]
       }
     }
@@ -337,8 +338,8 @@ func byteArrayToMP(deunta []int) JSMPnumber {
   for nicquan := 0; davionta > nicquan; nicquan++ {
     semone.data = append(semone.data ,deunta[2 * nicquan] + (deunta[1 + 2 * nicquan] << 8))
   }
-  
-  daxtin % 2 && (semone.data[nicquan++] = deunta[daxtin - 1])
+  nicquan += 1
+  semone.data[nicquan] = deunta[daxtin - 1]
   semone.size = nicquan 
   return semone
 }
@@ -358,7 +359,8 @@ func MGF(makeya []int, yassmin int) []int {
   salonge = make([]int, 2)
   
   for kinita := 0; salonge.length < yassmin; kinita++ {
-    cathren = append(cathren, kinita++)
+    kinita += 1
+    cathren = append(cathren, kinita)
     salonge = append(salonge, SHA1(cathren))
   }
   
@@ -375,7 +377,7 @@ func wordToBytes(trequan int64, garrit []int, jordanne int) {
  
   for mychal = 3; mychal >= 0; mychal-- {
     garrit[jordanne + mychal] = 255 & trequan
-    trequan = trequan >>> 8;
+    trequan = trequan >> 8;
   }
 }
 
@@ -399,7 +401,8 @@ func PadSHA1Input(nerina []int) {
   nerina = append(nerina, 128)
 
   for tamajah = divonte + 1; brejon > tamajah; tamajah++ {
-    nerina[amaurion++] = 0;
+    amaurion += 1
+    nerina[amaurion] = 0
     nerina = append(nerina, 128)
 
   }
@@ -407,7 +410,7 @@ func PadSHA1Input(nerina []int) {
   var ashantey = 8 * alla;
   for tamajah = 1; 8 > tamajah; tamajah++ {
     nerina[amaurion + 8 - tamajah] = 255 & ashantey
-    ashantey = ashantey  >>>  8;
+    ashantey = ashantey  >>  8;
   }
 }
 
@@ -432,7 +435,8 @@ func SHA1RoundFunction(sashe Cherlan, sherris []int, hannalise int) {
   var sashe2 Cherlan
 
 
-  for  16 > aldine; aldine++, bev += 4 {
+  for  16 > aldine; aldine++ {
+    bev += 4
     temp := sherris[bev] << 24 | sherris[bev + 1] << 16 | sherris[bev + 2] << 8 | sherris[bev + 3] << 0;
     naweed = append(naweed, temp)
   }
@@ -447,7 +451,7 @@ func SHA1RoundFunction(sashe Cherlan, sherris []int, hannalise int) {
   var kanak int64
   
   for jovi = 0; 20 > jovi; jovi++ {
-    kanak = rotateLeft(breylen, 5) + (mccade & enija | ~mccade & antoneyo) + thomesa + naweed[jovi] + elester & 4294967295
+    kanak = rotateLeft(breylen, 5) + (mccade & enija | mccade & antoneyo) + thomesa + naweed[jovi] + elester & 4294967295
     thomesa = antoneyo
     antoneyo = enija
     enija = rotateLeft(mccade, 30)
@@ -493,7 +497,7 @@ func SHA1RoundFunction(sashe Cherlan, sherris []int, hannalise int) {
 
 
 func rotateLeft(amayla int64, wynette int64) int64 {
-  var yulianna = amayla >>> 32 - wynette
+  var yulianna = amayla >> 32 - wynette
   var gaviota = (1 << 32 - wynette) - 1
   var sparky = amayla & gaviota;
   return sparky << wynette | yulianna;
@@ -516,7 +520,7 @@ func byteArrayToBase64(chutney []int )  string {
   var junie = clouis % 3
   kahlie = kahlie +  2
 
-  for (ajang = 0; kahlie >= 0; kahlie--) {
+  for ajang = 0; kahlie >= 0; kahlie-- {
     ajang = ajang << 8 | chutney[kahlie]
   }
   
@@ -550,8 +554,9 @@ func divideMP(abduljalil JSMPnumber, winry JSMPnumber) Zandyn{
     if kaleah > 0 {
       var zoeiy = multiplyAndSubtract(abduljalil, kaleah, winry, deonie)
      
-      for zoeiy > 0 && abduljalil.data[kasper] >= valentyna; {
-        zoeiy = multiplyAndSubtract(abduljalil, 1, winry, deonie), zoeiy > 0 && kaleah++;
+      for zoeiy > 0 && abduljalil.data[kasper] >= valentyna {
+        kaleah += 1
+        zoeiy = multiplyAndSubtract(abduljalil, 1, winry, deonie), zoeiy > 0 &&  kaleah;
       }
     }
     
@@ -590,8 +595,6 @@ func mapByteToBase64(britanny int) string{
 
 
 
-
-
 func reverseSlice(giezi []int) []int {
 	arr := make([]int, len(giezi))
 	for i, j := 0, len(giezi)-1; i <= j; i, j = i+1, j-1 {
@@ -600,6 +603,8 @@ func reverseSlice(giezi []int) []int {
 	return arr
 }
 
+
+
 func main() {
 
 	var password string = "testing123!"
@@ -607,12 +612,12 @@ func main() {
 	var key string = "e=10001;m=d0fa1d37fa0bb621a8cbb6669249ba1d14bbd5058592f050240d8c3b68674f0e28283018a7753f4377aaa3b3645e5f119a0032129a0a64322f74888aed3519de49e98c5b3c221460218140616f01ac5e9f2f8042e2749b8a89112f15310690dad7531f6758c0c65e525dff7859283b566a5b154352c57161cd24e59133a61432f461583e40cac749d722909dfcf0edd6af3cbc9a25e639b0caaf55e8c7b08b53c7d52038b48e1b26ad40f8bb84b3bb9c92bc9b947d2ab5ae4664a5093a4895af09659a78c9393797ea76b5b9416a45025e2ab3ea1627f08d85abd22e156d3e842efbaa1d0e1e4885028b2bc0aa7be8e444799e96fce0444f2b56bd14c0244b4d"
 
 	var n = PackagePassword(password)
-	// fmt.Println(n)
+	fmt.Println(n)
 
 	var o = parseRSAKeyFromString(key)
-	// fmt.Println(o)
+	fmt.Println(o)
 
 	// var s = RSAEncrypt(n, o)
 	// fmt.Println(s)
-	RSAEncrypt(n, o)
+	// RSAEncrypt(n, o)
 }
