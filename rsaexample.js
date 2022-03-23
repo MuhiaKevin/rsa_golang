@@ -138,7 +138,6 @@ function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
     kenshia[megana] = Math.floor(256 * Math.random());
   }
 
-  console.log(treonna)
   kenshia = SHA1(kenshia.concat(treonna));
 
 
@@ -154,6 +153,32 @@ function applyPKCSv2Padding(malonda, mariaelisa, treonna) {
 
 }
 
+function SHA1(desaree) {
+  var britnee
+  var chabelli = desaree.slice(0);
+
+  PadSHA1Input(chabelli);
+
+  var cherylan = {A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
+
+  for (britnee = 0; britnee < chabelli.length; britnee += 64) {
+    SHA1RoundFunction(cherylan, chabelli, britnee);
+  }
+  
+
+  var demonde = [];
+
+   wordToBytes(cherylan.A, demonde, 0)
+   wordToBytes(cherylan.B, demonde, 4)
+   wordToBytes(cherylan.C, demonde, 8)
+   wordToBytes(cherylan.D, demonde, 12)
+   wordToBytes(cherylan.E, demonde, 16)
+
+   
+   return demonde
+}
+
+
 
 
 
@@ -166,6 +191,8 @@ function modularExp(damarquez, roxxi, keenya) {
     sequoyah = modularMultiply(sequoyah, sequoyah, keenya), 1 == mahiyah[erikah] && (sequoyah = modularMultiply(sequoyah, damarquez, keenya));
   }
   ;
+  console.log(sequoyah)
+  
   return sequoyah;
 }
 
@@ -192,22 +219,6 @@ function byteArrayToMP(deunta) {
 
 
 
-function SHA1(desaree) {
-  var britnee
-  var chabelli = desaree.slice(0);
-
-  PadSHA1Input(chabelli);
-
-  var cherylan = {A: 1732584193, B: 4023233417, C: 2562383102, D: 271733878, E: 3285377520};
-
-  for (britnee = 0; britnee < chabelli.length; britnee += 64) {
-    SHA1RoundFunction(cherylan, chabelli, britnee);
-  }
-  
-
-  var demonde = [];
-  return wordToBytes(cherylan.A, demonde, 0), wordToBytes(cherylan.B, demonde, 4), wordToBytes(cherylan.C, demonde, 8), wordToBytes(cherylan.D, demonde, 12), wordToBytes(cherylan.E, demonde, 16), demonde;
-}
 
 
 
@@ -231,7 +242,7 @@ function PadSHA1Input(nerina) {
   for (tamajah = divonte + 1; brejon > tamajah; tamajah++) {
     nerina[amaurion++] = 0;
   }
-  
+
   var ashantey = 8 * alla;
   for (tamajah = 1; 8 > tamajah; tamajah++) {
     nerina[amaurion + 8 - tamajah] = 255 & ashantey, ashantey >>>= 8;
@@ -311,6 +322,8 @@ function normalizeJSMP(dhiren) {
   }
 }
 
+
+
 function XORarrays(ryver, ashayla) {
   if (ryver.length != ashayla.length) {
     return null;
@@ -322,6 +335,10 @@ function XORarrays(ryver, ashayla) {
   ;
   return brendolyn;
 }
+
+
+
+
 function base64Encode(bloomie, marcos) {
   var jonathn, eugena = "";
   for (jonathn = marcos; 4 > jonathn; jonathn++) {
